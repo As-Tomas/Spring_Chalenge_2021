@@ -1,0 +1,111 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+
+using namespace std;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+
+
+// class kiekvienai celei
+class Cell {
+public:
+    int index;
+    int richness;
+    int neigh0;
+    int neigh1;
+    int neigh2;
+    int neigh3;
+    int neigh4;
+    int neigh5;
+};
+//class kiekvienam medziui
+class Tree {
+public:
+    int nurent;
+
+};
+// class uzeriui
+class Player{
+public:
+    int sunPoints;
+    string action;
+};
+int main()
+{
+
+    int numberOfCells; // 37
+    cin >> numberOfCells; cin.ignore();
+    for (int i = 0; i < numberOfCells; i++) {
+        int index; // 0 is the center cell, the next cells spiral outwards
+        int richness; // 0 if the cell is unusable, 1-3 for usable cells
+        int neigh0; // the index of the neighbouring cell for each direction
+        int neigh1;
+        int neigh2;
+        int neigh3;
+        int neigh4;
+        int neigh5;
+        cin >> index >> richness >> neigh0 >> neigh1 >> neigh2 >> neigh3 >> neigh4 >> neigh5; cin.ignore();
+        //------
+        //cerr << right << setw(10) <<"index" << setw(8) <<"richness" << setw(8) <<"neigh0" << setw(8) <<"neigh1" << setw(8) <<"neigh2" << setw(8) <<"neigh3" << setw(8) <<"neigh4" << setw(8) <<"neigh5" << endl;
+        //cerr << right << setw(10) <<index << setw(8) <<richness << setw(8) <<neigh0 << setw(8) <<neigh1 << setw(8) <<neigh2 << setw(8) <<neigh3 << setw(8) <<neigh4 << setw(8) <<neigh5 << endl;
+        //------
+    }
+
+    // game loop
+    while (1) {
+        int day; // the game lasts 24 days: 0-23
+        cin >> day; cin.ignore();
+        int nutrients; // the base score you gain from the next COMPLETE action
+        cin >> nutrients; cin.ignore();
+        int sun; // your sun points
+        int score; // your current score
+        cin >> sun >> score; cin.ignore();
+        int oppSun; // opponent's sun points
+        int oppScore; // opponent's score
+        bool oppIsWaiting; // whether your opponent is asleep until the next day
+        cin >> oppSun >> oppScore >> oppIsWaiting; cin.ignore();
+        int numberOfTrees; // the current amount of trees
+        cin >> numberOfTrees; cin.ignore();
+
+        cerr << right << setw(10) << "nutrients: " << nutrients << endl;
+        cerr << right << setw(10) << "day: " << day << endl;
+        cerr << right << setw(10) << "sun: " << sun << endl;
+        cerr << right << setw(10) << "score: " << score << endl;
+        cerr << right << setw(10) << "oppSun: " << oppSun << " oppScore: " << oppScore << " oppIsWaiting: " << oppIsWaiting << endl;
+        cerr << right << setw(10) << "numberOfTree: " << numberOfTrees << endl;
+
+        for (int i = 0; i < numberOfTrees; i++) {
+            int cellIndex; // location of this tree
+            int size; // size of this tree: 0-3
+            bool isMine; // 1 if this is your tree
+            bool isDormant; // 1 if this tree is dormant
+            cin >> cellIndex >> size >> isMine >> isDormant; cin.ignore();
+            cerr << right << setw(10) << "cellIndex: " << cellIndex << "  size: " << size << "  isMine: " << isMine << "  isDormant: " << isDormant<< endl;
+        }
+        int numberOfPossibleMoves;
+        cin >> numberOfPossibleMoves; cin.ignore();
+        cerr << right << setw(10) << "numberOfPossibleMoves: "<< numberOfPossibleMoves << endl;
+        vector<string> myPossibleMoves;
+        for (int i = 0; i < numberOfPossibleMoves; i++) {
+            string possibleMove;
+            getline(cin, possibleMove);
+            cerr << right << setw(10) << "possibileMove: " << possibleMove << endl;
+            myPossibleMoves.push_back(possibleMove);
+        }
+
+        // Write an action using cout. DON'T FORGET THE "<< endl"
+        // To debug: cerr << "Debug messages..." << endl;
+
+
+        // GROW cellIdx | SEED sourceIdx targetIdx | COMPLETE cellIdx | WAIT <message>
+        //cout << "WAIT" << endl;
+        cout << myPossibleMoves.back() << endl;
+        myPossibleMoves.pop_back();
+    }
+}
